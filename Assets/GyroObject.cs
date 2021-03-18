@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GyroObject : MonoBehaviour
 {
-    private const float ObjectSpeed = 15.0f;
+    private const float ObjectSpeed = 10.0f;
     private Rigidbody _rb;
 
     private void Start()
@@ -22,10 +22,10 @@ public class GyroObject : MonoBehaviour
     private void ApplyGyroRotation()
     {
         /*
-         * Press rest button to fix issues with gyro.
+         * Press reset button to fix issues with gyro.
          */
         float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
-        float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
-        _rb.AddForce(initialOrientationY * ObjectSpeed, 0.0f, -initialOrientationX * ObjectSpeed);
+        float initialOrientationZ = Input.gyro.rotationRateUnbiased.z;
+        _rb.AddForce(-initialOrientationZ * ObjectSpeed, 0.0f, -initialOrientationX * ObjectSpeed);
     }
 }

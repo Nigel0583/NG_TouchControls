@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "R3CM505591M",
         "name": "com.DefaultCompany.NG_TouchControls_Part1",
-        "processId": 7714,
-        "exited": false
+        "processId": 21308,
+        "exited": true
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -13,6 +13,18 @@
             "name": "com.DefaultCompany.NG_TouchControls_Part1",
             "processId": 7714,
             "exited": false
+        },
+        {
+            "deviceId": "R3CM505591M",
+            "name": "com.DefaultCompany.NG_TouchControls_Part1",
+            "processId": 9310,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CM505591M",
+            "name": "com.DefaultCompany.NG_TouchControls_Part1",
+            "processId": 21308,
+            "exited": true
         }
     ],
     "m_Tags": {

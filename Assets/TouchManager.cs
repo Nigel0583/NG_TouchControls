@@ -72,7 +72,7 @@ public class TouchManager : MonoBehaviour
 
                     if (_hitObject == null)
                     {
-                        MoveCamera();
+                        RotateCamera();
                     }
 
                     break;
@@ -101,7 +101,7 @@ public class TouchManager : MonoBehaviour
             _touchOne = Input.GetTouch(1);
             _moreThenOneTouch = true;
 
-            if (_selectedObject != null)
+            if (_selectedObject != null && _moreThenOneTouch)
             {
                 if (_touchZero.phase == TouchPhase.Began || _touchOne.phase == TouchPhase.Began)
                 {
@@ -114,10 +114,14 @@ public class TouchManager : MonoBehaviour
                 _selectedObject.ResizeObject(_initialDistance, currentDistance, _initialScale);
                 _selectedObject.RotateObject(_initialScale);
             }
-            else
+            else if (_touchZero.phase == TouchPhase.Moved && _touchOne.phase == TouchPhase.Moved)
             {
                 float deltaMagnitudeDiff = CalcCameraMove(_touchOne, _touchZero);
                 cam.transform.position -= transform.forward * (deltaMagnitudeDiff / ZoomSpeed);
+            }
+            else if (_touchZero.phase == TouchPhase.Stationary && _touchOne.phase == TouchPhase.Moved)
+            {
+                MoveCamera();
             }
         }
     }
@@ -139,15 +143,12 @@ public class TouchManager : MonoBehaviour
 
     private void MoveCamera()
     {
-        Vector2 touchDeltaPos = Input.touches[0].deltaPosition * Time.deltaTime;
+        Vector2 touchDeltaPos = _touchOne.deltaPosition * Time.deltaTime;
         cam.transform.Translate(-touchDeltaPos.x, -touchDeltaPos.y, 0);
     }
 
     private void RotateCamera()
     {
-        /*
-         * This method can be added to switch Moving, to use swipe touch to rotate camera.
-         */
         _deltaX = _initTouch.position.x - _touchZero.position.x;
         _deltaY = _initTouch.position.y - _touchZero.position.y;
         _rotX -= _deltaY * Time.deltaTime * RotSpeed * Dir;

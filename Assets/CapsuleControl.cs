@@ -6,8 +6,6 @@ public class CapsuleControl : MonoBehaviour, IControllable
 {
     private Plane _objPlane;
     private Vector3 _vec;
-    public Vector3 min = new Vector3(0.9f, 0.9f, 0.9f);
-    public Vector3 max = new Vector3(5f, 5f, 5f);
     private Renderer _ourRenderer;
     private static readonly int ColorId = Shader.PropertyToID("_Color");
 
@@ -65,6 +63,4 @@ public class CapsuleControl : MonoBehaviour, IControllable
     public void youve_been_touched()
     {
     }
-
-    // Start is called before the first frame update
 }

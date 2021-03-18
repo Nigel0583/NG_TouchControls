@@ -4,7 +4,7 @@ public class TiltObject : MonoBehaviour
 {
     private Rigidbody _rb;
     private float _dirX;
-    private const float TiltMoveSpeed = 20f;
+    private const float TiltMoveSpeed = 15.0f;
 
     // Start is called before the first frame update
     private void Start()

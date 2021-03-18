@@ -3,7 +3,7 @@ using UnityEngine;
 public class SphereControl : MonoBehaviour, IControllable
 {
     private Renderer _ourRenderer;
-    private float _speedMod;
+    private float _speedMod = 100;
     private static readonly int ColorId = Shader.PropertyToID("_Color");
     
     public void IsMoving(Ray ourRay)

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GyroObject : MonoBehaviour
 {
+    private const float ObjectSpeed = 15.0f;
+    private Rigidbody _rb;
+
     private void Start()
     {
         Input.gyro.enabled = true;
         Application.targetFrameRate = 120;
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -17,7 +21,11 @@ public class GyroObject : MonoBehaviour
 
     private void ApplyGyroRotation()
     {
-        //Reference https://answers.unity.com/questions/970891/rotating-a-camera-using-the-gyroscope.html
-        transform.Rotate(-Input.gyro.rotationRateUnbiased.x / 2, -Input.gyro.rotationRateUnbiased.y / 2, 0);
+        /*
+         * Press rest button to fix issues with gyro.
+         */
+        float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
+        float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
+        _rb.AddForce(initialOrientationY * ObjectSpeed, 0.0f, -initialOrientationX * ObjectSpeed);
     }
 }
